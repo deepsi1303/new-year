@@ -1,0 +1,140 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #ff4b6e, #ff758c);
+  color: white;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* LOCK SCREEN */
+#lockScreen {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+#lockScreen input, #lockScreen button {
+  padding: 12px;
+  margin: 8px;
+}
+
+/* CONTAINER */
+.container {
+  padding: 40px 20px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+}
+
+/* HEADINGS */
+h1 { font-size: 2.5rem; }
+
+/* GLOW */
+.glow {
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #ff9dbb; }
+  to { text-shadow: 0 0 25px #fff; }
+}
+
+/* TYPING */
+pre {
+  white-space: pre-wrap;
+  min-height: 240px;
+}
+
+pre::after {
+  content: "|";
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* BUTTONS */
+button {
+  padding: 12px 22px;
+  margin: 10px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.hidden { display: none; }
+
+/* SLIDESHOW */
+.slideshow {
+  margin: 30px auto;
+  max-width: 400px;
+}
+
+.slide {
+  width: 100%;
+  display: none;
+  border-radius: 20px;
+}
+
+.slide.active { display: block; }
+
+.caption {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* STORY */
+.story-line {
+  opacity: 0;
+  transition: opacity 1s;
+  margin: 30px 0;
+}
+
+/* FINAL */
+.final {
+  font-size: 2rem;
+  margin-top: 80px;
+}
+
+/* HEARTS */
+#hearts::before {
+  content: "❤️ 💖 💕";
+  position: fixed;
+  width: 100%;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-10vh); }
+}
+
+/* FIREWORKS */
+#fireworks {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* THEME */
+.dark-theme {
+  background: linear-gradient(135deg, #000, #111);
+}
+
+.theme-btn {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  border-radius: 50%;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy New Year Bhavie ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- PASSWORD LOCK -->
+<div id="lockScreen">
+  <h2>For Bhavie ❤️</h2>
+  <input type="password" id="pass" placeholder="Enter code">
+  <button onclick="unlock()">Enter</button>
+</div>
+
+<!-- FIREWORKS -->
+<canvas id="fireworks"></canvas>
+
+<!-- HEARTS -->
+<div id="hearts"></div>
+
+<!-- MUSIC -->
+<audio id="bgMusic" src="assets/music.mp3" loop></audio>
+<audio id="voice" src="assets/voice.mp3"></audio>
+
+<!-- THEME -->
+<button class="theme-btn" onclick="toggleTheme()">🌙</button>
+
+<div class="container">
+
+  <h1>🎉 Happy New Year 2026, <span class="glow">Bhavie</span> ❤️</h1>
+
+  <!-- TYPING SHAYARI -->
+  <pre id="shayari"></pre>
+
+  <!-- COUNTDOWN -->
+  <p id="countdown"></p>
+
+  <!-- MUSIC CONTROL -->
+  <button onclick="toggleMusic()">🎵 Play / Pause Music</button>
+
+  <!-- VOICE NOTE -->
+  <button onclick="document.getElementById('voice').play()">🎤 Play Voice Note</button>
+
+  <!-- SURPRISE -->
+  <button onclick="showSurprise()">💝 Click for a Surprise</button>
+  <p id="surprise" class="hidden"></p>
+
+  <!-- SLIDESHOW -->
+  <div class="slideshow">
+    <img src="assets/photo1.jpg" class="slide active">
+    <img src="assets/photo2.jpg" class="slide">
+    <img src="assets/photo3.jpg" class="slide">
+    <p class="caption">Your smile ❤️</p>
+  </div>
+
+  <!-- STORY -->
+  <div class="story">
+    <p class="story-line">Tum saath ho, toh har saal naya lagta hai.</p>
+    <p class="story-line">Naya saal naya nahi chahiye.</p>
+    <p class="story-line">Bas tumhara saath chahiye.</p>
+  </div>
+
+  <!-- FINAL MESSAGE -->
+  <div id="finalMessage" class="final hidden">
+    Happy New Year, Bhavie ❤️<br>Always.
+  </div>
+
+  <footer>
+    Made with ❤️ by Mandeep<br>
+    <span id="liveTime"></span>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
