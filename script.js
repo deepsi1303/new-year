@@ -5,7 +5,7 @@ function unlock() {
   }
 }
 
-/* TYPING SHAYARI */
+/* SHAYARI TYPING */
 const shayariText = `Ishq par zor nahin hai yeh woh aatish Ghalib,
 Jo lagaye na lage aur bujhaye na bane.
 
@@ -25,70 +25,67 @@ function typeShayari() {
   if (i < shayariText.length) {
     document.getElementById("shayari").innerHTML += shayariText.charAt(i);
     i++;
-    setTimeout(typeShayari, 30);
+    setTimeout(typeShayari, 35);
   }
 }
 typeShayari();
 
-/* MUSIC AUTO + FADE IN */
+/* MUSIC AUTO + FADE */
 const music = document.getElementById("bgMusic");
-let started = false, vol = 0;
 music.volume = 0;
+let started = false;
 
 function fadeIn() {
+  let v = 0;
   const f = setInterval(() => {
-    if (vol < 0.4) {
-      vol += 0.01;
-      music.volume = vol;
+    if (v < 0.4) {
+      v += 0.01;
+      music.volume = v;
     } else clearInterval(f);
-  }, 100);
+  }, 120);
 }
 
-function autoMusic() {
+function startMusic() {
   if (!started) {
     music.play().then(fadeIn).catch(()=>{});
     started = true;
   }
 }
 
-document.addEventListener("click", autoMusic);
-document.addEventListener("scroll", autoMusic);
+document.addEventListener("click", startMusic);
+document.addEventListener("scroll", startMusic);
 
-/* MUSIC BUTTON */
 function toggleMusic() {
   music.paused ? music.play() : music.pause();
 }
 
-/* SURPRISE */
-const lines = [
-  "Tum ho toh sab theek lagta hai.",
-  "Har saal tumse shuru ho.",
-  "You are my calm."
+/* WHY I LOVE YOU */
+const loveLines = [
+  "I love you because you make normal days peaceful.",
+  "I love how you understand without words.",
+  "I love the calm you bring to my chaos.",
+  "I love how you exist — effortlessly.",
+  "I love the way you make time slow down."
 ];
 
+let used = [];
+function changeLoveLine() {
+  if (used.length === loveLines.length) used = [];
+  let line;
+  do {
+    line = loveLines[Math.floor(Math.random() * loveLines.length)];
+  } while (used.includes(line));
+  used.push(line);
+  document.getElementById("loveLine").innerText = line;
+}
+changeLoveLine();
+setInterval(changeLoveLine, 6000);
+
+/* SURPRISE */
 function showSurprise() {
   const s = document.getElementById("surprise");
-  s.innerHTML = lines[Math.floor(Math.random() * lines.length)];
+  s.innerText = "Tum ho toh sab theek lagta hai.";
   s.classList.toggle("hidden");
-  confetti();
-}
-
-/* CONFETTI */
-function confetti() {
-  for (let i = 0; i < 30; i++) {
-    const e = document.createElement("div");
-    e.innerHTML = "🎉";
-    e.style.position = "fixed";
-    e.style.left = Math.random()*100+"vw";
-    e.style.top = "-10px";
-    document.body.appendChild(e);
-    let fall = setInterval(()=>{
-      e.style.top = parseInt(e.style.top)+5+"px";
-      if (parseInt(e.style.top) > innerHeight) {
-        clearInterval(fall); e.remove();
-      }
-    },30);
-  }
 }
 
 /* COUNTDOWN */
@@ -106,19 +103,22 @@ setInterval(updateCountdown, 1000);
 /* SLIDESHOW */
 let s = 0;
 const slides = document.querySelectorAll(".slide");
-setInterval(()=>{
+setInterval(() => {
   slides[s].classList.remove("active");
-  s = (s+1)%slides.length;
+  s = (s + 1) % slides.length;
   slides[s].classList.add("active");
-},3000);
+}, 3000);
 
-/* SCROLL STORY + FINAL */
-window.addEventListener("scroll", ()=>{
-  document.querySelectorAll(".story-line").forEach(l=>{
-    if(l.getBoundingClientRect().top < innerHeight-100) l.style.opacity=1;
+/* STORY + FOREVER */
+window.addEventListener("scroll", () => {
+  document.querySelectorAll(".story-line").forEach(line => {
+    if (line.getBoundingClientRect().top < innerHeight - 100)
+      line.style.opacity = 1;
   });
-  if (innerHeight + scrollY >= document.body.offsetHeight)
-    document.getElementById("finalMessage").classList.remove("hidden");
+
+  if (innerHeight + scrollY >= document.body.offsetHeight - 50) {
+    document.getElementById("foreverLine").classList.remove("hidden");
+  }
 });
 
 /* THEME */
@@ -126,18 +126,8 @@ function toggleTheme() {
   document.body.classList.toggle("dark-theme");
 }
 
-/* HEART TRAIL */
-document.addEventListener("mousemove", e=>{
-  const h = document.createElement("div");
-  h.innerHTML = "❤️";
-  h.style.position="fixed";
-  h.style.left=e.clientX+"px";
-  h.style.top=e.clientY+"px";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),600);
-});
-
-/* TIME */
-setInterval(()=>{
-  document.getElementById("liveTime").innerHTML = new Date().toLocaleString();
-},1000);
+/* LIVE TIME */
+setInterval(() => {
+  document.getElementById("liveTime").innerText =
+    new Date().toLocaleString();
+}, 1000);
